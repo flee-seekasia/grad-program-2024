@@ -14,55 +14,53 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import my.com.jobstreet.gradprogram.ui.theme.Gradprogram2024Theme
 
-class MainActivity : ComponentActivity() {
+class SecondActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        val bundle = receiveData()
         setContent {
             Gradprogram2024Theme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
-                        name = "Android",
+                        bundle = bundle,
                         modifier = Modifier.padding(innerPadding)
                     ) {
-                        openSecondActivity()
+                        openThirdActivity(bundle = bundle)
                     }
                 }
             }
         }
     }
 
-    private fun openSecondActivity() {
-        val intent = Intent(this, SecondActivity::class.java)
-        val bundle = Bundle()
-        bundle.putString("string", "Main Activity Value")
-        bundle.putInt("int", 11)
-        intent.putExtra("bundle", bundle)
+    private fun openThirdActivity(bundle: Bundle?) {
+        val intent = Intent(this, ThirdActivity::class.java)
+        bundle?.putBoolean("boolean", true)
+        intent.putExtra("bundle1", bundle)
         startActivity(intent)
     }
+
+    private fun receiveData() = intent.getBundleExtra("bundle")
 }
 
 @Composable
-private fun Greeting(name: String, modifier: Modifier = Modifier, onClick: () -> Unit) {
+private fun Greeting(bundle: Bundle?, modifier: Modifier = Modifier, onClick: () -> Unit) {
+    val text = if (bundle == null) {
+        "Bundle is null"
+    } else {
+        "string=${bundle.getString("string")}\nint=${bundle.getInt("int")}"
+    }
     Column(modifier = modifier.padding(horizontal = 16.dp)) {
         Text(
-            text = "Hello $name!",
+            text = text,
             style = MaterialTheme.typography.titleLarge
         )
         Button(onClick = onClick) {
-            Text(text = "Second Activity", style = MaterialTheme.typography.labelLarge)
+            Text(text = "Third Activity", style = MaterialTheme.typography.labelLarge)
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    Gradprogram2024Theme {
-        Greeting(name = "Android", onClick = { })
     }
 }
