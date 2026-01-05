@@ -64,9 +64,9 @@ class QuarantineTestRule : TestRule {
      * Mute a test in Buildkite Test Analytics via API
      */
     private fun muteTestInBuildkite(description: Description) {
-        val apiToken = "bkua_c6b4644dcab88cd6f44224500dbe9a11f007b38b"
-        val orgSlug = "flee-seekasia"
-        val suiteSlug = "grad-program-2024"
+        val apiToken = System.getenv("BUILDKITE_API_TOKEN")
+        val orgSlug = System.getenv("BUILDKITE_ORG_SLUG")
+        val suiteSlug = System.getenv("BUILDKITE_SUITE_SLUG")
         
         if (apiToken == null || orgSlug == null || suiteSlug == null) {
             println("⚠️  Buildkite API credentials not configured. Skipping mute.")
