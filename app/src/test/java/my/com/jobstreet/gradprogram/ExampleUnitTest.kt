@@ -13,7 +13,7 @@ import org.junit.experimental.categories.Category
 class ExampleUnitTest {
     @get:Rule
     val quarantineRule = QuarantineTestRule()
-    
+
     @Category(SlowTests::class)
     @Quarantined(reason = "Test is flaky and needs investigation")
     @Test
