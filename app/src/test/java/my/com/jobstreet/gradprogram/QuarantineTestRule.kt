@@ -64,7 +64,7 @@ class QuarantineTestRule : TestRule {
      * Mute a test in Buildkite Test Analytics via API
      */
     private fun muteTestInBuildkite(description: Description) {
-        val apiToken = "bkua_e549dc9ec0ee3a63cf88d6a4da919356516cd8ba"
+        val apiToken = "bkua_c6b4644dcab88cd6f44224500dbe9a11f007b38b"
         val orgSlug = "flee-seekasia"
         val suiteSlug = "grad-program-2024"
         
