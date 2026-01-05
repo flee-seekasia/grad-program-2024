@@ -1,15 +1,14 @@
 package my.com.jobstreet.gradprogram
 
-import org.junit.Assert.assertEquals
 import org.junit.Test
-import org.junit.experimental.categories.Category
+
+import org.junit.Assert.*
 
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
-@Category(SlowTests::class)
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
