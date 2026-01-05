@@ -9,8 +9,8 @@ import org.junit.experimental.categories.Category
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
+@Category(SlowTests::class)
 class ExampleUnitTest {
-    @Category(SlowTests::class)
     @Test
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
