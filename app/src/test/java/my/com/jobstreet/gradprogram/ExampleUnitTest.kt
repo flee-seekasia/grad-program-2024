@@ -13,11 +13,20 @@ import org.junit.experimental.categories.Category
 class ExampleUnitTest {
     @get:Rule
     val quarantineRule = QuarantineTestRule()
+    
+    @get:Rule
+    val flakyTestRule = FlakyTestRule()
 
     @Category(SlowTests::class)
     @Quarantined(reason = "Test is flaky and needs investigation")
     @Test
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
+    }
+    
+    @Test
+    fun failingTest() {
+        // This test will fail and be automatically marked as flaky
+        assertEquals(5, 2 + 2)
     }
 }
